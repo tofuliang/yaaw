@@ -400,12 +400,20 @@
           </div>
         </div>
         <div class="control-group">
-          <label class="control-label" for="ati-all-proxy">代理</label>
+          <label class="control-label" for="ati-all-proxy">代理服务器</label>
           <div class="controls">
             <input id="ati-all-proxy" class="input-xlarge" name="all-proxy"/>
           </div>
         </div>
         <div class="clearfix"></div>
+        <div class="control-group half">
+          <div class="controls">
+            <label class="checkbox">
+                <input type="checkbox" id="use-proxy" class="input-save" />
+                使用代理
+            </label>
+          </div>
+        </div>
         <div class="control-group half">
           <div class="controls">
             <label class="checkbox">
@@ -418,31 +426,31 @@
           <div class="controls">
             <label class="checkbox">
               <input type="checkbox" name="parameterized-uri" class="input-save" {{#parameterized-uri}}checked{{/parameterized-uri}} />
-              Parameterized URI
+              解析URI
             </label>
           </div>
         </div>
         <div class="clearfix"></div>
         <div class="control-group half">
-          <label class="control-label" for="ati-split">Split</label>
+          <label class="control-label" for="ati-split">连接数量</label>
           <div class="controls">
             <input id="ati-split" class="input-small input-save" name="split" value="{{split}}" />
           </div>
         </div>
         <div class="control-group half">
-          <label class="control-label" for="ati-cps">Conn/Serv</label>
+          <label class="control-label" for="ati-cps">连接/服务器</label>
           <div class="controls">
             <input id="ati-cps" class="input-small input-save" name="max-connection-per-server" value="{{max-connection-per-server}}" />
           </div>
         </div>
         <div class="control-group half">
-          <label class="control-label" for="ati-sr">Seed Ratio</label>
+          <label class="control-label" for="ati-sr">做种比例</label>
           <div class="controls">
             <input id="ati-sr" class="input-small input-save" name="seed-ratio" value="{{seed-ratio}}" />
           </div>
         </div>
         <div class="control-group half">
-          <label class="control-label" for="ati-st">Seed Time</label>
+          <label class="control-label" for="ati-st">做种时间</label>
           <div class="controls">
             <input id="ati-st" class="input-small input-save" name="seed-time" value="{{seed-time}}" />
           </div>

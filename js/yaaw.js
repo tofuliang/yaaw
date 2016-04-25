@@ -500,11 +500,16 @@ var YAAW = (function() {
       submit: function(_this) {
         var uri = $("#uri-input").val() || $("#uri-textarea").val() && $("#uri-textarea").val().split("\n") ;
         var options = {}, options_save = {};
+        var useProxy = $("#use-proxy")[0].checked;
         $("#add-task-option input[name], #add-task-option textarea[name]").each(function(i, n) {
           var name = n.getAttribute("name");
           var value = (n.type == "checkbox" ? n.checked : n.value);
           if (name && value) {
-            options[name] = String(value);
+            if(name == 'all-proxy'){
+              if(useProxy) options[name] = String(value);
+            }else{
+              options[name] = String(value);
+            }
             if ($(n).hasClass("input-save")) {
               options_save[name] = String(value);
             }
@@ -707,7 +712,7 @@ var YAAW = (function() {
         } else {
           ARIA2.select_lock(true);
         }
-      },
+      }
     },
 
     contextmenu: {
@@ -809,7 +814,7 @@ var YAAW = (function() {
       moveend: function() {
         if (on_gid) ARIA2.change_pos(on_gid, 0, 'POS_END');
         on_gid = null;
-      },
+      }
 
     },
 
