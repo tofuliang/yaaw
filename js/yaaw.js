@@ -104,6 +104,9 @@ var YAAW = (function() {
       $("#btnRemoveFinished").live("click", function() {
         ARIA2.purge_download_result();
       });
+      $("#btnSelectCompleted").live("click", function() {
+        YAAW.tasks.selectCompleted();
+      });
       $("#closeAlert").live("click", function() {
         $('#add-task-alert').hide();
       });
@@ -659,6 +662,15 @@ var YAAW = (function() {
           _this.select(n);
         });
         this.check_select();
+      },
+
+      selectCompleted: function() {
+        var _this = this;
+        this.unSelectAll(true);
+        $(".tasks-table .task[data-status=complete]").each(function(i, n) {
+          _this.select(n);
+        });
+        this.check_select()
       },
 
       getSelectedGids: function() {
