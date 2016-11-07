@@ -63,7 +63,8 @@
               <li><a href="#" id="btnSeleceActive" >选中下载</a></li>
               <li><a href="#" id="btnSelectWaiting">选中等待</a></li>
               <li><a href="#" id="btnSelectPaused" >选中暂停</a></li>
-              <li><a href="#" id="btnSelectStoped" >选中停止</a></li>
+              <li><a href="#" id="btnSelectStopped">选中停止</a></li>
+              <li><a href="#" id="btnSelectFailed" >选中错误</a></li>
             </ul>
           </div>
         </div>
@@ -75,13 +76,16 @@
             </a>
           </div>
           <div class="pull-left btn-group" id="do-all-btn">
-            <a href="#" id="btnStartAll" class="btn" id="unpause-all" rel="tooltip" title="开始所有">
+            <a href="#" id="btnStartAll" class="btn" rel="tooltip" title="开始所有">
               <i class="icon-forward"></i>
             </a>
-            <a href="#" id="btnPauseAll"  class="btn" id="pause-all" rel="tooltip" title="暂停所有">
+            <a href="#" id="btnPauseAll"  class="btn" rel="tooltip" title="暂停所有">
               <i class="icon-stop"></i>
             </a>
-            <a href="#" id="btnRemoveFinished"  class="btn" id="pure-all" rel="tooltip" title="清除已完成">
+            <a href="#" id="btnRestartFailed" class="btn" rel="tooltip" title="重试失败任务">
+              <i class="icon-repeat"></i>
+            </a>
+            <a href="#" id="btnRemoveFinished"  class="btn" rel="tooltip" title="清除已完成">
               <i class="icon-trash"></i>
             </a>
           </div>

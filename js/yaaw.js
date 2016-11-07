@@ -68,6 +68,9 @@ var YAAW = (function() {
       $("#btnRemove").live("click", function() {
         YAAW.tasks.remove();YAAW.tasks.unSelectAll();
       });
+      $("#btnRestartFailed").live("click", function() {
+        YAAW.tasks.restartFailed();YAAW.tasks.unSelectAll();
+      });
       $("#btnPause").live("click", function() {
         YAAW.tasks.pause();YAAW.tasks.unSelectAll();
       });
@@ -88,6 +91,9 @@ var YAAW = (function() {
       });
       $("#btnSelectStopped").live("click", function() {
         YAAW.tasks.selectStopped();
+      });
+      $("#btnSelectFailed").live("click", function() {
+        YAAW.tasks.selectFailed();
       });
       $("#btnStartAll").live("click", function() {
         ARIA2.unpause_all();
@@ -646,8 +652,17 @@ var YAAW = (function() {
         this.check_select();
       },
 
+      selectFailed: function() {
+        var _this = this;
+        this.unSelectAll(true);
+        $(".tasks-table .task[data-status=error]").each(function(i, n) {
+          _this.select(n);
+        });
+        this.check_select();
+      },
+
       getSelectedGids: function() {
-        var gids = new Array();
+        var gids = [];
         $(".tasks-table .task.selected").each(function(i, n) {
           gids.push(n.getAttribute("data-gid"));
         });
@@ -655,7 +670,7 @@ var YAAW = (function() {
       },
 
       pause: function() {
-        var gids = new Array();
+        var gids = [];
         $(".tasks-table .task.selected").each(function(i, n) {
           if (n.getAttribute("data-status") == "active" ||
               n.getAttribute("data-status") == "waiting")
@@ -665,8 +680,8 @@ var YAAW = (function() {
       },
 
       unpause: function() {
-        var gids = new Array();
-        var stopped_gids = new Array();
+        var gids = [];
+        var stopped_gids = [];
         $(".tasks-table .task.selected").each(function(i, n) {
           var status = n.getAttribute("data-status");
           if (status == "paused") {
@@ -676,13 +691,13 @@ var YAAW = (function() {
           }
         });
         if (gids.length) ARIA2.unpause(gids);
-        if (stopped_gids.length) ARIA2.restart_task(stopped_gids);
+        if (stopped_gids.length) {ARIA2.restart_task(stopped_gids);ARIA2.remove_result(stopped_gids);}
       },
 
       remove: function() {
-        var gids = new Array();
+        var gids = [];
         var remove_list = ["active", "waiting", "paused"];
-        var remove_gids = new Array();
+        var remove_gids = [];
         $(".tasks-table .task.selected").each(function(i, n) {
           if (remove_list.indexOf(n.getAttribute("data-status")) != -1)
             remove_gids.push(n.getAttribute("data-gid"));
@@ -691,6 +706,21 @@ var YAAW = (function() {
         });
         if (remove_gids.length) ARIA2.remove(remove_gids);
         if (gids.length) ARIA2.remove_result(gids);
+      },
+
+      restartFailed:function () {
+        var gids = [];
+        $(".tasks-table .task").each(function(i, n) {
+          var status = n.getAttribute("data-status");
+          if (status == "error") {
+            gids.push(n.getAttribute("data-gid"));
+          }
+        });
+        console.log(gids);
+        if (gids.length) {
+          ARIA2.restart_task(gids);
+          ARIA2.remove_result(gids);
+        }
       },
 
       info: function(task) {
