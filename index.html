@@ -23,7 +23,6 @@
     <title>Yet Another Aria2 Web Frontend</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, width=device-width">
     <meta name="author" content="Binux" />
-    
     <link href="img/favicon.ico" rel="shortcut icon" type="image/ico" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
@@ -36,6 +35,7 @@
     <div class="container">
       <header class="main-head page-header">
         <h1>Aria2管理</h1>
+        <p id="sponsor" style="display:none" >Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
         <span id="offline-cached"></span>
         <div id="global-info" class="pull-right">
           <div id="global-version"></div>
@@ -244,10 +244,10 @@
       <a href="#" class="btn" data-dismiss="modal">取消</a>
     </div>
     </section>
-    
+
     <script id="global-speed-tpl" type="text/mustache-template">
       <i class="icon-download"></i> <span>{{#_v.format_size}}{{downloadSpeed}}{{/_v.format_size}}</span>/s
-        / 
+        /
       <i class="icon-upload"></i>  <span>{{#_v.format_size}}{{uploadSpeed}}{{/_v.format_size}}</span>/s
     </script>
 
@@ -287,7 +287,6 @@
       </li>
       {{/tasks}}
     </script>
-    
     <script id="other-task-tpl" type="text/mustache-template">
       {{#tasks}}
       <li class="task" id="task-gid-{{gid}}" data-status="{{status}}" data-gid="{{gid}}" data-infohash="{{infoHash}}">
@@ -337,7 +336,7 @@
           </div>
         </div>
       </div>
-    </script>      
+    </script>
 
     <script id="ib-status-tpl" type="text/mustache-template">
       <ul>
@@ -523,6 +522,9 @@
     <script src="js/peerid.js"></script>
     <script src="js/aria2.js"></script>
     <script src="js/yaaw.js"></script>
+    <script type="text/javascript">
+      $(function(){if(/yaaw.tofuliang.tk/.test(window.location.href)){$('#sponsor').show();}});
+    </script>>
   </body>
 </html>
 <!-- vim: set et sw=2 ts=2 sts=2 ff=unix fenc=utf8: -->
